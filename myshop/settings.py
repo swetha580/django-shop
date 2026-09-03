@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import braintree
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -132,3 +132,15 @@ CART_SESSION_ID = 'cart'
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+BRAINTREE_MERCHANT_ID = 'fvb3dbf7r4qskbhv'
+BRAINTREE_PUBLIC_KEY = '7thdtc28s3m4ggwx'
+BRAINTREE_PRIVATE_KEY = '0fe23e290cfb4d62dcdda10a39360334'
+
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
