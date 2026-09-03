@@ -1,1 +1,5 @@
--e "env_myshop/\n__pycache__/\n*.pyc\ndb.sqlite3\nmedia/" 
+env_myshop/
+__pycache__/
+*.pyc
+db.sqlite3
+media/
