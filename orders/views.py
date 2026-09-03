@@ -5,7 +5,7 @@ from .forms import OrderCreateForm
 from cart.cart import Cart
 from .tasks import order_created
 from django.contrib.admin.views.decorators import staff_member_required
-from order.models import Order
+from orders.models import Order
 from django.template.loader import render_to_string
 import weasyprint
 from django.http import HttpResponse
@@ -16,7 +16,11 @@ def order_create(request):
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid():
-            order = form.save()
+            order = form.save(commit=False)
+            if cart.coupon:
+                order.coupon = cart.coupon
+                order.discount = cart.coupon.discount
+            order.save()
             for item in cart:
                 OrderItem.objects.create(order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
             cart.clear()
