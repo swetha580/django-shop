@@ -1,0 +1,5 @@
+body { font-family: Arial, sans-serif; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 6px; border-bottom: 1px solid #ccc; }
+.paid { color: green; font-weight: bold; }
+.pending { color: red; font-weight: bold; }
